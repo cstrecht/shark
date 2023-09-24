@@ -1,4 +1,8 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+<div align="center">
+  <img alt="My Logo" src="src/assets/shark_logo.png" width="150px" />
+</div>
+
+✋ 🕗 I am currently working on this project and will update README once I finish it.
 
 ## Getting Started
 
