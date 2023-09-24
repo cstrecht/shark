@@ -2,11 +2,14 @@
 
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import Image from "next/image";
+import shark_logo from "../assets/shark_logo.png";
 
 export function CreateCommentForm({ post_id }) {
   const router = useRouter();
   // TODO: change this whenever we have sessions implemented
   const owner = "650cce20f517400e64f56faa";
+  const [message, setMessage] = useState("");
 
   const handleSubmit = async (event) => {
     // Avoid default redirect from form submission
@@ -29,14 +32,25 @@ export function CreateCommentForm({ post_id }) {
     if (!response.ok) {
       throw new Error("Failed to create comment");
     }
-
+    setMessage("");
     return router.refresh();
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <textarea name="message" />
-      <input type="submit" />
+    <form className="mb-8" onSubmit={handleSubmit}>
+      <div className="flex gap-8">
+        <textarea
+          className="text-dark-blue border border-light-grey rounded-xl w-full p-2"
+          name="message"
+          placeholder="Write a comment"
+          value={message}
+          onChange={(e) => setMessage(e.target.value)}
+        />
+        <input
+          className="block text-white bg-shark-blue focus:ring-4 focus:outline-none focus:ring-cyan-300 rounded-xl text-base font-bold px-8 py-2 text-center"
+          type="submit"
+        />
+      </div>
     </form>
   );
 }
