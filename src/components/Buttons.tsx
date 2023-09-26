@@ -3,7 +3,9 @@
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 
-export function DeleteButton({ apiUrl }) {
+type DeleteButtonProps = { apiUrl: string };
+
+export function DeleteButton({ apiUrl }: DeleteButtonProps) {
   const router = useRouter();
 
   const handleDelete = async () => {

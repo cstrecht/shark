@@ -1,42 +1,46 @@
 const DUMMY_API_URL = "https://dummyapi.io/data/v1";
 
-export async function getPosts() {
+export async function getPosts(): Promise<PaginatedData<Post>> {
   return await getData("/post");
 }
 
-export async function createPost(data: Object) {
+export async function createPost(data: Object): Promise<Post> {
   return await postData("/post/create", data);
 }
 
-export async function deletePost(id: string) {
+export async function deletePost(id: string): Promise<string> {
   return await deleteData(`/post/${id}`);
 }
 
-export async function updatePost(id: string, data: Object) {
+export async function updatePost(id: string, data: Object): Promise<Post> {
   return await putData(`/post/${id}`, data);
 }
 
-export async function getPostById(id: string) {
+export async function getPostById(id: string): Promise<Post> {
   return await getData(`/post/${id}`);
 }
 
-export async function getPostsFromUser(id: string) {
+export async function getPostsFromUser(
+  id: string
+): Promise<PaginatedData<PostPreview>> {
   return await getData(`/user/${id}/post`);
 }
 
-export async function getUserById(id: string) {
+export async function getUserById(id: string): Promise<User> {
   return await getData(`/user/${id}`);
 }
 
-export async function getCommentsFromPost(id: string) {
+export async function getCommentsFromPost(
+  id: string
+): Promise<PaginatedData<Comment>> {
   return await getData(`/post/${id}/comment`);
 }
 
-export async function deleteCommentFromPost(id: string) {
+export async function deleteCommentFromPost(id: string): Promise<string> {
   return await deleteData(`/comment/${id}`);
 }
 
-export async function createCommentOnPost(data: Object) {
+export async function createCommentOnPost(data: Object): Promise<Comment> {
   return await postData("/comment/create", data);
 }
 

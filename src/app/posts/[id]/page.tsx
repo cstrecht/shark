@@ -7,8 +7,8 @@ import { getPostById, getCommentsFromPost } from "@/lib/dummy-api";
 type PageProps = { params: { id: string } };
 
 export default async function Post({ params: { id } }: PageProps) {
-  let post = await getPostById(id);
   let paginatedComments = await getCommentsFromPost(id);
+  let post = await getPostById(id);
 
   return (
     <section>

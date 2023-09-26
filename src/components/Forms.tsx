@@ -1,21 +1,23 @@
 "use client";
 
-import { getTags } from "@/lib/dummy-api";
 import { useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
+import { ChangeEvent, FormEvent, useState } from "react";
 
-export function CreateCommentForm({ post_id }) {
+type CreateCommentFormProps = { post_id: string };
+type EditPostFormProps = { post: Post };
+
+export function CreateCommentForm({ post_id }: CreateCommentFormProps) {
   const router = useRouter();
   // TODO: change this whenever we have sessions implemented
   const owner = "650cce20f517400e64f56faa";
   const [message, setMessage] = useState("");
 
-  const handleSubmit = async (event) => {
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     // Avoid default redirect from form submission
     event.preventDefault();
 
     // Get the form data from the submit event
-    const form = event.target;
+    const form = event.currentTarget;
     // Adjust the data for our needs.
     const data = {
       message: form.message.value,
@@ -59,10 +61,10 @@ export function CreatePostForm() {
   // TODO: change this whenever we have sessions implemented
   const owner = "650cce20f517400e64f56faa";
 
-  const handleSubmit = async (event) => {
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    const form = event.target;
+    const form = event.currentTarget;
 
     const data = {
       text: form.text.value,
@@ -108,20 +110,22 @@ export function CreatePostForm() {
   );
 }
 
-export function EditPostForm({ post }) {
+export function EditPostForm({ post }: EditPostFormProps) {
   const router = useRouter();
   const [text, setText] = useState(post.text);
   const [image, setImage] = useState(post.image);
 
-  const handleTextChange = (event) => setText(event.target.value);
-  const handleImageChange = (event) => setImage(event.target.value);
+  const handleTextChange = (event: ChangeEvent<HTMLTextAreaElement>) =>
+    setText(event.currentTarget.value);
+  const handleImageChange = (event: ChangeEvent<HTMLInputElement>) =>
+    setImage(event.currentTarget.value);
 
-  const handleSubmit = async (event) => {
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     // Avoid default redirect from form submission
     event.preventDefault();
 
     // Get the form data from the submit event
-    const form = event.target;
+    const form = event.currentTarget;
     // Adjust the data for our needs.
     const data = {
       id: post.id,
