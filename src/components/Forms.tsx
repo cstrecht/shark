@@ -1,9 +1,8 @@
 "use client";
 
+import { getTags } from "@/lib/dummy-api";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
-import Image from "next/image";
-import shark_logo from "../assets/shark_logo.png";
+import { useEffect, useState } from "react";
 
 export function CreateCommentForm({ post_id }) {
   const router = useRouter();
@@ -86,16 +85,32 @@ export function CreatePostForm() {
   return (
     <form
       onSubmit={handleSubmit}
-      className="flex flex-col w-1/2 gap-6 text-black"
-      action=""
+      className="flex flex-col text-black gap-8 my-4"
     >
-      <input type="text" name="text" placeholder="text of the post" />
-      <input type="text" name="image" placeholder="image URL" />
-      <input type="text" name="tags" placeholder="select tags" />
+      <textarea
+        className="bg-grey2 rounded-md p-4 text-black"
+        name="text"
+        placeholder="Go ahead..."
+      />
       <input
-        className="bg-purple-400 text-white"
+        className="bg-grey2 rounded-md p-4 text-black"
+        type="text"
+        name="image"
+        placeholder="Your image URL"
+      />
+
+      {/* Make a select option here for tags */}
+      <input
+        className="bg-grey2 rounded-md p-4 text-black"
+        type="text"
+        name="tags"
+        placeholder="Tags"
+      />
+
+      <input
+        className="bg-gradient-to-r text-white from-shark-blue to-cyan hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-cyan-300 rounded-full text-lg font-bold p-3 hover:cursor-pointer"
         type="submit"
-        value="Create"
+        value="Post"
       />
     </form>
   );
@@ -136,25 +151,27 @@ export function EditPostForm({ post }) {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <input
+    <form
+      onSubmit={handleSubmit}
+      className="flex flex-col text-black gap-8 my-4"
+    >
+      <textarea
+        className="bg-grey2 rounded-md p-4 text-black"
         onChange={handleTextChange}
-        className="text-black bg-purple-700"
         name="text"
-        type="text"
         value={text}
       />
       <input
         onChange={handleImageChange}
-        className="text-black"
+        className="bg-grey2 rounded-md p-4 text-black"
         name="image"
         type="text"
         value={image}
       />
       <input
-        className="bg-purple-400 text-white"
+        className="bg-light-grey rounded-full hover:bg-mostard text-white p-3 font-bold hover:cursor-pointer"
         type="submit"
-        value="Update"
+        value="Edit"
       />
     </form>
   );

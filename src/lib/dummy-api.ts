@@ -40,6 +40,10 @@ export async function createCommentOnPost(data: Object) {
   return await postData("/comment/create", data);
 }
 
+export async function getTags() {
+  return await getData("/tag");
+}
+
 async function getData(path: string) {
   const fetchOptions: RequestInit = {
     headers: { "app-id": process.env.DUMMY_API_APP_ID as string },

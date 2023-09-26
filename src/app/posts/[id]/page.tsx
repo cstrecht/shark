@@ -9,7 +9,6 @@ type PageProps = { params: { id: string } };
 export default async function Post({ params: { id } }: PageProps) {
   let post = await getPostById(id);
   let paginatedComments = await getCommentsFromPost(id);
-  console.log(paginatedComments.owner);
 
   return (
     <section>
@@ -73,7 +72,7 @@ export default async function Post({ params: { id } }: PageProps) {
       <CreateCommentForm post_id={post.id} />
       <ul>
         {paginatedComments.data.map((comment) => (
-          <li className="my-5" key={comment.id}>
+          <li key={comment.id} className="my-5">
             <div className="flex gap-4">
               <img
                 className="rounded-full w-10 h-10"

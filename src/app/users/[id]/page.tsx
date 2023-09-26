@@ -37,39 +37,40 @@ export default async function User({ params: { id } }: PageProps) {
         </p>
         <ul>
           {paginatedUserPosts.data.map((post) => (
-            <div className="w-full border border-light-grey px-10 my-4 bg-white rounded-lg shadow-md">
-              <li key={post.id}>
-                <Link href={`/posts/${post.id}`}>
-                  <div className="flex justify-between text-xl my-6">
-                    <div>{post.text === "" ? "-" : post.text}</div>
-                  </div>
-                  <div>
-                    <img
-                      className="h-80 w-full object-cover rounded"
-                      src={post.image}
-                      alt=""
-                    />
-                  </div>
-                </Link>
-                <div className="flex text-grey my-6">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    strokeWidth="1.5"
-                    stroke="currentColor"
-                    className="w-6 h-6 heart-icon"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z"
-                    />
-                  </svg>
-                  {post.likes}
+            <li
+              key={post.id}
+              className="w-full border border-light-grey px-10 my-4 bg-white rounded-lg shadow-md"
+            >
+              <Link href={`/posts/${post.id}`}>
+                <div className="flex justify-between text-xl my-6">
+                  <div>{post.text === "" ? "-" : post.text}</div>
                 </div>
-              </li>
-            </div>
+                <div>
+                  <img
+                    className="h-80 w-full object-cover rounded"
+                    src={post.image}
+                    alt=""
+                  />
+                </div>
+              </Link>
+              <div className="flex text-grey my-6">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  strokeWidth="1.5"
+                  stroke="currentColor"
+                  className="w-6 h-6 heart-icon"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z"
+                  />
+                </svg>
+                {post.likes}
+              </div>
+            </li>
           ))}
         </ul>
       </div>
