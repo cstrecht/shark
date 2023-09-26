@@ -99,14 +99,6 @@ export function CreatePostForm() {
         placeholder="Your image URL"
       />
 
-      {/* Make a select option here for tags */}
-      <input
-        className="bg-grey2 rounded-md p-4 text-black"
-        type="text"
-        name="tags"
-        placeholder="Tags"
-      />
-
       <input
         className="bg-gradient-to-r text-white from-shark-blue to-cyan hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-cyan-300 rounded-full text-lg font-bold p-3 hover:cursor-pointer"
         type="submit"

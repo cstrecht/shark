@@ -30,20 +30,8 @@ export default async function Post({ params: { id } }: PageProps) {
           <div className="text-2xl mt-2">
             {post.text === "" ? "-" : post.text}
           </div>
-          <div className="flex gap-3 mt-2">
-            {/* TODO: Different colors for different tags */}
-            {post.tags.map((tag) => (
-              <div
-                key={tag}
-                className="px-2 py-1 rounded-full bg-cyan text-xs text-white"
-              >
-                {tag}
-              </div>
-            ))}
-          </div>
         </div>
       </div>
-
       <div className="flex justify-center bg-white rounded-lg">
         <img
           className="h-1/2 w-1/2 object-cover"
