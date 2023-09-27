@@ -1,25 +1,29 @@
-//3 Post page
 import Link from "next/link";
 import { CreateCommentForm } from "@/components/Forms";
 import { DeleteButton } from "@/components/Buttons";
 import { getPostById, getCommentsFromPost } from "@/lib/dummy-api";
+import { useUser } from "@/lib/auth";
 
 type PageProps = { params: { id: string } };
 
 export default async function Post({ params: { id } }: PageProps) {
-  let paginatedComments = await getCommentsFromPost(id);
-  let post = await getPostById(id);
+  const currentUser = await useUser();
+  const post = await getPostById(id);
+  const paginatedComments = await getCommentsFromPost(id);
 
   return (
     <section>
       <div className="flex justify-between text-xl my-6">
         <div>
           <div className="flex">
-            <img
-              className="w-10 h-10 my-2 rounded-full ring-2 ring-shark-blue "
-              src={post.owner.picture}
-              alt="Profile pic"
-            />
+            {post.owner.picture && (
+              <img
+                className="w-10 h-10 my-2 rounded-full ring-2 ring-shark-blue "
+                src={post.owner.picture}
+                alt="Profile pic"
+              />
+            )}
+
             <Link
               className="text-shark-blue pt-4 pl-4"
               href={`/users/${post.owner.id}`}
@@ -79,9 +83,11 @@ export default async function Post({ params: { id } }: PageProps) {
                   <p className="font-light"> {comment.message}</p>
                 </div>
                 <div>
-                  <DeleteButton
-                    apiUrl={`/api/posts/${post.id}/comments/${comment.id}`}
-                  />
+                  {currentUser.id === comment.owner.id && (
+                    <DeleteButton
+                      apiUrl={`/api/posts/${post.id}/comments/${comment.id}`}
+                    />
+                  )}
                 </div>
               </div>
             </div>

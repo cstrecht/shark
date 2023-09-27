@@ -1,5 +1,5 @@
-import { deleteCommentFromPost } from "@/lib/dummy-api";
 import { NextResponse } from "next/server";
+import { deleteCommentFromPost } from "@/lib/dummy-api";
 
 type Context = { params: { comment_id: string } };
 

@@ -1,10 +1,11 @@
-//1
+import Link from "next/link";
 import { DeleteButton, PostButton } from "@/components/Buttons";
 import { getPosts } from "@/lib/dummy-api";
-import Link from "next/link";
+import { useUser } from "@/lib/auth";
 
 export default async function Home() {
-  let paginatedPosts = await getPosts();
+  const currentUser = await useUser();
+  const paginatedPosts = await getPosts();
 
   return (
     <section>
@@ -38,26 +39,31 @@ export default async function Home() {
 
               <div>
                 <div className="flex gap-3">
-                  <DeleteButton apiUrl={`/api/posts/${post.id}`} />
-                  <Link
-                    className="bg-orange-500 m-4"
-                    href={`/posts/${post.id}/edit`}
-                  >
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      strokeWidth="1.5"
-                      stroke="currentColor"
-                      className="w-5 h-5 ml-2 update-icon"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10"
-                      />
-                    </svg>
-                  </Link>
+                  {currentUser.id === post.owner.id && (
+                    <div>
+                      <DeleteButton apiUrl={`/api/posts/${post.id}`} />
+                      <Link
+                        className="bg-orange-500 m-4"
+                        href={`/posts/${post.id}/edit`}
+                      >
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                          strokeWidth="1.5"
+                          stroke="currentColor"
+                          className="w-5 h-5 ml-2 update-icon"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10"
+                          />
+                        </svg>
+                      </Link>
+                    </div>
+                  )}
+
                   <div className="flex gap-2 text-grey items-center">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"

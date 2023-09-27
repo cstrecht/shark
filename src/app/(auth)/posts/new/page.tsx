@@ -1,7 +1,6 @@
 import { CreatePostForm } from "@/components/Forms";
 
-//2
-export default function NewPost() {
+export default async function NewPost() {
   return (
     <section className="flex justify-center">
       <div className="border bg-white w-1/2 p-8 border-shark-blue rounded-xl shadow">

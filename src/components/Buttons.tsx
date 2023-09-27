@@ -1,5 +1,6 @@
 "use client";
 
+import { signOut } from "next-auth/react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 
@@ -48,5 +49,35 @@ export function PostButton() {
         Create Post
       </Link>
     </div>
+  );
+}
+
+export function LogOutButton() {
+  const router = useRouter();
+
+  const handleClick = async () => {
+    const data = await signOut({ callbackUrl: "/login", redirect: false });
+
+    router.push(data.url);
+  };
+
+  return (
+    <button onClick={handleClick}>
+      <svg
+        className="w-8 h-8 p-1 rounded-lg text-light-grey bg-white "
+        aria-hidden="true"
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 16 16"
+      >
+        <path
+          stroke="currentColor"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeWidth="1.5"
+          d="M4 8h11m0 0-4-4m4 4-4 4m-5 3H3a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h3"
+        />
+      </svg>
+    </button>
   );
 }

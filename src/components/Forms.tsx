@@ -1,5 +1,6 @@
 "use client";
 
+import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { ChangeEvent, FormEvent, useState } from "react";
 
@@ -8,23 +9,13 @@ type EditPostFormProps = { post: Post };
 
 export function CreateCommentForm({ post_id }: CreateCommentFormProps) {
   const router = useRouter();
-  // TODO: change this whenever we have sessions implemented
-  const owner = "650cce20f517400e64f56faa";
   const [message, setMessage] = useState("");
 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
-    // Avoid default redirect from form submission
     event.preventDefault();
 
-    // Get the form data from the submit event
     const form = event.currentTarget;
-    // Adjust the data for our needs.
-    const data = {
-      message: form.message.value,
-      owner: owner,
-      post: post_id,
-    };
-
+    const data = { message: form.message.value, post: post_id };
     const response = await fetch(`/api/posts/${post_id}/comments`, {
       method: "post",
       body: JSON.stringify(data),
@@ -58,19 +49,12 @@ export function CreateCommentForm({ post_id }: CreateCommentFormProps) {
 
 export function CreatePostForm() {
   const router = useRouter();
-  // TODO: change this whenever we have sessions implemented
-  const owner = "650cce20f517400e64f56faa";
 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
     const form = event.currentTarget;
-
-    const data = {
-      text: form.text.value,
-      image: form.image.value,
-      owner: owner,
-    };
+    const data = { text: form.text.value, image: form.image.value };
     const response = await fetch("/api/posts", {
       method: "post",
       body: JSON.stringify(data),
@@ -96,9 +80,10 @@ export function CreatePostForm() {
       />
       <input
         className="bg-grey2 rounded-md p-4 text-black"
-        type="text"
+        type="url"
+        pattern="https://.*"
         name="image"
-        placeholder="Your image URL"
+        placeholder="https://example.com/example.png"
       />
 
       <input
@@ -169,6 +154,46 @@ export function EditPostForm({ post }: EditPostFormProps) {
         type="submit"
         value="Edit"
       />
+    </form>
+  );
+}
+
+export function LoginForm() {
+  const router = useRouter();
+
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    const data = new FormData(event.currentTarget);
+
+    const response = await signIn("credentials", {
+      userId: data.get("userId"),
+      redirect: false,
+    });
+
+    if (response && !response.error) {
+      router.push("/");
+    } else {
+      return new Error("Failed to loggin!");
+    }
+  };
+
+  return (
+    <form className="space-y-4 md:space-y-6" onSubmit={handleSubmit}>
+      <input
+        required
+        pattern="^(?!\s*$).+"
+        type="text"
+        name="userId"
+        id="userId"
+        className="bg-gray-50 border text-shark-blue border-grey2 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
+        placeholder="User ID"
+      />
+      <button
+        type="submit"
+        className="w-full text-white bg-shark-blue hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
+      >
+        Sign in
+      </button>
     </form>
   );
 }

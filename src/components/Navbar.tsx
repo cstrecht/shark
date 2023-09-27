@@ -1,8 +1,12 @@
 import Link from "next/link";
 import shark_logo from "../assets/shark_logo.png";
 import Image from "next/image";
+import { LogOutButton } from "./Buttons";
+import { useUser } from "@/lib/auth";
 
-export default function Navbar() {
+export default async function Navbar() {
+  const currentUser = await useUser();
+
   return (
     <nav className="bg-transparent border-gray-200">
       <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto py-6">
@@ -11,9 +15,10 @@ export default function Navbar() {
           <div className="self-center leading-5 font-bold text-3xl text-dark-blue whitespace-nowrap">
             <h1>Shark Pool</h1>
             <p className="text-lg font-light">A dummy place to swim.</p>
+            <p>{currentUser.firstName}</p>
           </div>
         </Link>
-        <div className="hidden w-full md:block md:w-auto" id="navbar-default">
+        <div className="flex gap-8 w-auto" id="navbar-default">
           {/* TODO: Link button that goes to the logged profile */}
           <Link
             href=""
@@ -34,6 +39,8 @@ export default function Navbar() {
               />
             </svg>
           </Link>
+
+          <LogOutButton />
         </div>
       </div>
     </nav>

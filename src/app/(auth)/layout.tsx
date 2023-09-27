@@ -1,5 +1,5 @@
+import "../globals.css";
 import Navbar from "@/components/Navbar";
-import "./globals.css";
 import type { Metadata } from "next";
 import { Nunito } from "next/font/google";
 
@@ -10,7 +10,7 @@ export const metadata: Metadata = {
   description: "A dummy place to swim.",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode;

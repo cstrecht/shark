@@ -1,5 +1,5 @@
-import { deletePost, updatePost } from "@/lib/dummy-api";
 import { NextResponse } from "next/server";
+import { deletePost, updatePost } from "@/lib/dummy-api";
 
 type Context = { params: { post_id: string } };
 

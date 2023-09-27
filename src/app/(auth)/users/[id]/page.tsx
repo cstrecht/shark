@@ -1,12 +1,13 @@
-//5 Profile page
-import { getPostsFromUser, getUserById } from "@/lib/dummy-api";
 import Link from "next/link";
+import { getPostsFromUser, getUserById } from "@/lib/dummy-api";
+import { useUser } from "@/lib/auth";
 
 type PageProps = { params: { id: string } };
 
 export default async function User({ params: { id } }: PageProps) {
   let user = await getUserById(id);
   let paginatedUserPosts = await getPostsFromUser(id);
+  const currentUser = await useUser();
 
   return (
     <section className="flex justify-around gap-12">
@@ -76,8 +77,4 @@ export default async function User({ params: { id } }: PageProps) {
       </div>
     </section>
   );
-}
-
-{
-  /*  */
 }

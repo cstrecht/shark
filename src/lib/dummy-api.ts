@@ -32,7 +32,7 @@ export async function getUserById(id: string): Promise<User> {
 
 export async function getCommentsFromPost(
   id: string
-): Promise<PaginatedData<Comment>> {
+): Promise<PaginatedData<PostComment>> {
   return await getData(`/post/${id}/comment`);
 }
 

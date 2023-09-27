@@ -1,11 +1,15 @@
 import { EditPostForm } from "@/components/Forms";
 import { getPostById, updatePost } from "@/lib/dummy-api";
+import { notFound } from "next/navigation";
+import { useUser } from "@/lib/auth";
 
-//4
 type PageProps = { params: { id: string } };
 
 export default async function EditPost({ params: { id } }: PageProps) {
   const post = await getPostById(id);
+  const currentUser = await useUser();
+
+  if (currentUser.id != post.owner.id) notFound();
 
   return (
     <section className="flex justify-center">

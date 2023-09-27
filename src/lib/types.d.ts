@@ -20,6 +20,7 @@ type User = UserPreview & {
   registerDate: string;
   phone: string;
   location: UserLocation;
+  updatedDate: string;
 };
 
 type UserLocation = {
@@ -59,7 +60,7 @@ type Post = PostPreview & {
   link: string;
 };
 
-type Comment = {
+type PostComment = {
   id: string;
   message: string;
   owner: User;
