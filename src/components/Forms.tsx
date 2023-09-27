@@ -197,3 +197,65 @@ export function LoginForm() {
     </form>
   );
 }
+
+export function SignupForm() {
+  const router = useRouter();
+
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+
+    const form = event.currentTarget;
+    const data = {
+      firstName: form.firstName.value,
+      lastName: form.lastName.value,
+      email: form.email.value,
+    };
+
+    const response = await fetch("/api/users", {
+      method: "post",
+      body: JSON.stringify(data),
+    });
+
+    if (!response.ok) {
+      throw new Error("Failed to create user");
+    }
+
+    return router.push("/login");
+  };
+
+  return (
+    <form className="space-y-4 md:space-y-6" onSubmit={handleSubmit}>
+      <input
+        type="text"
+        name="firstName"
+        id="firstName"
+        className="border text-shark-blue border-grey2 text-md rounded-lg focus:ring-cyan focus:border-cyan block w-full p-2.5"
+        placeholder="First name"
+        required
+      />
+      <input
+        type="text"
+        name="lastName"
+        id="lastName"
+        className="border text-shark-blue border-grey2 text-md rounded-lg focus:ring-cyan focus:border-cyan block w-full p-2.5"
+        placeholder="Last name"
+        required
+      />
+      <input
+        type="email"
+        name="email"
+        id="email"
+        className="border text-shark-blue border-grey2 text-md rounded-lg focus:ring-cyan focus:border-cyan block w-full p-2.5"
+        placeholder="Email address"
+        required
+      />
+
+      <button
+        type="submit"
+        className="w-full text-white bg-cyan hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
+      >
+        Sign Up
+      </button>
+    </form>
+  );
+}

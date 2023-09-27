@@ -26,6 +26,10 @@ export async function getPostsFromUser(
   return await getData(`/user/${id}/post`);
 }
 
+export async function createUser(data: Object): Promise<User> {
+  return await postData("/user/create", data);
+}
+
 export async function getUserById(id: string): Promise<User> {
   return await getData(`/user/${id}`);
 }
