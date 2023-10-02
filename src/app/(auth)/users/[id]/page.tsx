@@ -1,6 +1,9 @@
 import Link from "next/link";
 import { getPostsFromUser, getUserById } from "@/lib/dummy-api";
 import { useUser } from "@/lib/auth";
+import { LogOutButton } from "@/components/Buttons";
+import shark_default from "../../../../assets/shark_default.jpg";
+import Image from "next/image";
 
 type PageProps = { params: { id: string } };
 
@@ -10,31 +13,55 @@ export default async function User({ params: { id } }: PageProps) {
   const currentUser = await useUser();
 
   return (
-    <section className="flex justify-around gap-12">
-      <div className="bg-white h-fit w-1/2 p-4 rounded-xl shadow flex flex-col items-center justify-center">
-        <img
-          className="w-20 h-20 my-2 rounded-full ring-2 ring-shark-blue "
-          src={user.picture}
-          alt="Profile pic"
-        />
+    <section className="flex justify-around gap-16">
+      <div className="bg-white h-fit w-1/2 p-6 gap-4 rounded-xl shadow flex flex-col items-center justify-center">
+        {currentUser.picture === undefined ? (
+          <Image
+            src={shark_default}
+            alt="Default profile picture"
+            width={60}
+            height={60}
+            className="rounded-full h-28 w-28"
+          />
+        ) : (
+          <img
+            src={user.picture}
+            alt="User Profile picture"
+            className="rounded-full h-28 w-28"
+          />
+        )}
 
         <h1 className="text-3xl text-shark-blue font-medium text-gray-700">
           {user.firstName} {user.lastName}
         </h1>
-        <p className="font-light text-grey">
-          📍 {user.location?.city}, {user.location?.country}
-        </p>
-        <div className="text-center flex flex-col gap-2 my-6 text-sm">
-          <p>{user.gender}</p>
-          <p>{user.email}</p>
-          <p>{user.phone}</p>
-          <p>{user.location?.timezone}h away from me</p>
+        {user.location?.city && user.location?.country && (
+          <p className="font-light text-grey">
+            📍 {user.location?.city}, {user.location?.country}
+          </p>
+        )}
+
+        <div className="text-left flex font-light gap-2 flex-col text-base">
+          {user.gender && <p className="capitalize">{`💫 ${user.gender}`}</p>}
+          {user.email && <p>{`📧 ${user.email}`}</p>}
+          {user.phone && <p> {`📞 ${user.phone}`}</p>}
+          {currentUser.id != user.id && (
+            <p> {`🌎 ${user.location?.timezone}h away from me`}</p>
+          )}
         </div>
+
+        {currentUser.id === user.id && (
+          <div>
+            <LogOutButton />
+          </div>
+        )}
       </div>
+
       {/* Posts section */}
       <div className="bg-white w-full h-[750px] overflow-y-scroll overflow-auto p-4 rounded-xl shadow">
         <p className="text-lg text-shark-blue text-gray-700">
-          What {user.firstName} is posting lately
+          {currentUser.id === user.id
+            ? "My Posts"
+            : `What ${user.firstName} is posting lately`}
         </p>
         <ul>
           {paginatedUserPosts.data.map((post) => (

@@ -186,11 +186,11 @@ export function LoginForm() {
         name="userId"
         id="userId"
         className="bg-gray-50 border text-shark-blue border-grey2 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
-        placeholder="User ID"
+        placeholder="User ID *"
       />
       <button
         type="submit"
-        className="w-full text-white bg-shark-blue hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
+        className="w-full text-white bg-shark-blue focus:ring-4 focus:outline-none font-medium rounded-lg text-sm px-5 py-2.5 text-center hover:font-extrabold"
       >
         Sign in
       </button>
@@ -209,6 +209,12 @@ export function SignupForm() {
       firstName: form.firstName.value,
       lastName: form.lastName.value,
       email: form.email.value,
+      gender: form.gender.value,
+      phone: form.phone.value,
+      location: {
+        city: form.city.value,
+        country: form.country.value,
+      },
     };
 
     const response = await fetch("/api/users", {
@@ -230,7 +236,7 @@ export function SignupForm() {
         name="firstName"
         id="firstName"
         className="border text-shark-blue border-grey2 text-md rounded-lg focus:ring-cyan focus:border-cyan block w-full p-2.5"
-        placeholder="First name"
+        placeholder="First name *"
         required
       />
       <input
@@ -238,7 +244,7 @@ export function SignupForm() {
         name="lastName"
         id="lastName"
         className="border text-shark-blue border-grey2 text-md rounded-lg focus:ring-cyan focus:border-cyan block w-full p-2.5"
-        placeholder="Last name"
+        placeholder="Last name *"
         required
       />
       <input
@@ -246,13 +252,47 @@ export function SignupForm() {
         name="email"
         id="email"
         className="border text-shark-blue border-grey2 text-md rounded-lg focus:ring-cyan focus:border-cyan block w-full p-2.5"
-        placeholder="Email address"
+        placeholder="Email address *"
         required
       />
-
+      <input
+        type="text"
+        name="phone"
+        id="phone"
+        className="border text-shark-blue border-grey2 text-md rounded-lg focus:ring-cyan focus:border-cyan block w-full p-2.5"
+        placeholder="Phone number"
+        required
+      />
+      <input
+        type="text"
+        name="city"
+        id="city"
+        className="border text-shark-blue border-grey2 text-md rounded-lg focus:ring-cyan focus:border-cyan block w-full p-2.5"
+        placeholder="City *"
+        required
+      />
+      <input
+        type="text"
+        name="country"
+        id="country"
+        className="border text-shark-blue border-grey2 text-md rounded-lg focus:ring-cyan focus:border-cyan block w-full p-2.5"
+        placeholder="Country *"
+        required
+      />
+      <select
+        defaultValue=""
+        name="gender"
+        id="gender"
+        className="border text-light-grey bg-white border-grey2 text-md rounded-lg focus:ring-shark-blue focus:border-shark-blue block w-full p-2.5"
+      >
+        <option value="">I prefer not to share my gender</option>
+        <option value="female">Female</option>
+        <option value="male">Male</option>
+        <option value="other">Other</option>
+      </select>
       <button
         type="submit"
-        className="w-full text-white bg-cyan hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
+        className="w-full text-white bg-cyan focus:ring-4 focus:outline-none font-medium rounded-lg text-sm px-5 py-2.5 text-center hover:font-extrabold"
       >
         Sign Up
       </button>

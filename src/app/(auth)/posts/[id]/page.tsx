@@ -1,8 +1,10 @@
 import Link from "next/link";
 import { CreateCommentForm } from "@/components/Forms";
-import { DeleteButton } from "@/components/Buttons";
+import { DeleteButton, GoBackButton } from "@/components/Buttons";
 import { getPostById, getCommentsFromPost } from "@/lib/dummy-api";
 import { useUser } from "@/lib/auth";
+import shark_default from "../../../../assets/shark_default.jpg";
+import Image from "next/image";
 
 type PageProps = { params: { id: string } };
 
@@ -15,12 +17,21 @@ export default async function Post({ params: { id } }: PageProps) {
     <section>
       <div className="flex justify-between text-xl my-6">
         <div>
+          <GoBackButton url="/" />
           <div className="flex">
-            {post.owner.picture && (
+            {currentUser.id === post.owner.id ? (
+              <Image
+                src={shark_default}
+                alt="Default profile picture"
+                width={20}
+                height={20}
+                className="rounded-full h-12 w-12"
+              />
+            ) : (
               <img
-                className="w-10 h-10 my-2 rounded-full ring-2 ring-shark-blue "
                 src={post.owner.picture}
-                alt="Profile pic"
+                alt="User Profile picture"
+                className="rounded-full h-12 w-12"
               />
             )}
 
@@ -66,20 +77,39 @@ export default async function Post({ params: { id } }: PageProps) {
         {paginatedComments.data.map((comment) => (
           <li key={comment.id} className="my-5">
             <div className="flex gap-4">
-              <img
-                className="rounded-full w-10 h-10"
-                src={comment.owner.picture}
-                alt="Profile pic"
-              />
+              {comment.owner.picture === undefined ? (
+                <Image
+                  src={shark_default}
+                  alt="logo"
+                  width={20}
+                  height={20}
+                  className="rounded-full w-10 h-10"
+                />
+              ) : (
+                <img
+                  className="rounded-full w-10 h-10"
+                  src={comment.owner.picture}
+                  alt="Profile picture"
+                />
+              )}
 
               <div className="bg-white flex gap-24 flex-between rounded-xl py-2 px-4">
                 <div>
-                  <Link
-                    className="text-orange-400 font-bold"
-                    href={`/users/${comment.owner.id}`}
-                  >
-                    {comment.owner.firstName}
-                  </Link>
+                  {currentUser.id === comment.owner.id ? (
+                    <Link
+                      className="text-orange-400 font-bold"
+                      href={`/profile/${currentUser.firstName}`}
+                    >
+                      {comment.owner.firstName}
+                    </Link>
+                  ) : (
+                    <Link
+                      className="text-orange-400 font-bold"
+                      href={`/users/${comment.owner.id}`}
+                    >
+                      {comment.owner.firstName}
+                    </Link>
+                  )}
                   <p className="font-light"> {comment.message}</p>
                 </div>
                 <div>

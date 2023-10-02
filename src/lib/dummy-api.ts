@@ -90,6 +90,7 @@ async function postData(path: string, data: Object) {
   const response = await fetch(`${DUMMY_API_URL}${path}`, fetchOptions);
 
   if (!response.ok) {
+    console.log(await response.json());
     throw new Error("Failed to post data");
   }
 
