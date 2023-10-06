@@ -30,7 +30,7 @@ export function DeleteButton({ apiUrl }: DeleteButtonProps) {
         viewBox="0 0 24 24"
         strokeWidth="1.5"
         stroke="currentColor"
-        className="w-5 h-5 trash-icon"
+        className="trash-icon h-5 w-5"
       >
         <path
           strokeLinecap="round"
@@ -52,7 +52,7 @@ export function EditButton({ href }: EditButtonProps) {
           viewBox="0 0 24 24"
           strokeWidth="1.5"
           stroke="currentColor"
-          className="w-5 h-5 update-icon"
+          className="update-icon h-5 w-5"
         >
           <path
             strokeLinecap="round"
@@ -67,14 +67,14 @@ export function EditButton({ href }: EditButtonProps) {
 
 export function LikeButton({ likes }: LikeButtonProps) {
   return (
-    <button className="flex gap-2 text-grey items-center">
+    <button className="flex items-center gap-2 text-grey">
       <svg
         xmlns="http://www.w3.org/2000/svg"
         fill="none"
         viewBox="0 0 24 24"
         strokeWidth="1.5"
         stroke="currentColor"
-        className="w-6 h-6 heart-icon"
+        className="heart-icon h-6 w-6"
       >
         <path
           strokeLinecap="round"
@@ -92,7 +92,7 @@ export function PostButton() {
     <button className="fixed bottom-0 right-0 mb-20 mr-12">
       <Link
         href="/posts/new"
-        className="block bg-gradient-to-r text-white from-shark-blue to-cyan hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-cyan-300 rounded-full text-lg font-bold px-8 py-5 text-center mb-2"
+        className="focus:ring-cyan-300 mb-2 block rounded-full bg-gradient-to-r from-shark-blue to-cyan px-8 py-5 text-center text-lg font-bold text-white hover:bg-gradient-to-bl focus:outline-none focus:ring-4"
       >
         Create Post
       </Link>
@@ -111,7 +111,7 @@ export function LogOutButton() {
 
   return (
     <button
-      className="ring ring-shark-blue py-2 px-6 text-shark-blue text-xs rounded-xl hover:bg-shark-blue hover:text-white"
+      className="rounded-xl px-6 py-2 text-xs text-shark-blue ring ring-shark-blue hover:bg-shark-blue hover:text-white"
       onClick={handleClick}
     >
       Log Out
@@ -129,7 +129,7 @@ export function GoBackButton({ url }: GoBackButtonProps) {
           viewBox="0 0 24 24"
           strokeWidth="1.5"
           stroke="currentColor"
-          className="w-6 h-6"
+          className="h-6 w-6"
         >
           <path
             strokeLinecap="round"

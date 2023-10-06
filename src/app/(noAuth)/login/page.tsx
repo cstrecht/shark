@@ -11,10 +11,10 @@ export default async function Login() {
   if (session) redirect("/");
 
   return (
-    <section className="min-h-screen flex justify-center items-center">
-      <div className="w-full text-center gap-8 items-center flex flex-col justify-center max-w-md bg-white rounded-2xl shadow-md p-6">
+    <section className="flex min-h-screen items-center justify-center">
+      <div className="flex w-full max-w-md flex-col items-center justify-center gap-8 rounded-2xl bg-white p-6 text-center shadow-md">
         <div className="flex justify-between">
-          <div className="flex gap-4 justify-center items-center">
+          <div className="flex items-center justify-center gap-4">
             <Image
               src={shark_logo}
               alt="SharkPool logo"

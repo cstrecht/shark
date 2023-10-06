@@ -14,24 +14,24 @@ export default async function User({ params: { id } }: PageProps) {
 
   return (
     <section className="flex justify-around gap-16">
-      <div className="bg-white h-fit w-1/2 p-6 gap-4 rounded-xl shadow flex flex-col items-center justify-center">
+      <div className="flex h-fit w-1/2 flex-col items-center justify-center gap-4 rounded-xl bg-white p-6 shadow">
         {currentUser.picture === undefined ? (
           <Image
             src={shark_default}
             alt="Default profile picture"
             width={60}
             height={60}
-            className="rounded-full h-28 w-28"
+            className="h-28 w-28 rounded-full"
           />
         ) : (
           <img
             src={user.picture}
             alt="User Profile picture"
-            className="rounded-full h-28 w-28"
+            className="h-28 w-28 rounded-full"
           />
         )}
 
-        <h1 className="text-3xl text-shark-blue font-medium text-gray-700">
+        <h1 className="text-gray-700 text-3xl font-medium text-shark-blue">
           {user.firstName} {user.lastName}
         </h1>
         {user.location?.city && user.location?.country && (
@@ -40,7 +40,7 @@ export default async function User({ params: { id } }: PageProps) {
           </p>
         )}
 
-        <div className="text-left flex font-light gap-2 flex-col text-base">
+        <div className="flex flex-col gap-2 text-left text-base font-light">
           {user.gender && <p className="capitalize">{`💫 ${user.gender}`}</p>}
           {user.email && <p>{`📧 ${user.email}`}</p>}
           {user.phone && <p> {`📞 ${user.phone}`}</p>}
@@ -57,8 +57,8 @@ export default async function User({ params: { id } }: PageProps) {
       </div>
 
       {/* Posts section */}
-      <div className="bg-white w-full h-[750px] overflow-y-scroll overflow-auto p-4 rounded-xl shadow">
-        <p className="text-lg text-shark-blue text-gray-700">
+      <div className="h-[750px] w-full overflow-auto overflow-y-scroll rounded-xl bg-white p-4 shadow">
+        <p className="text-gray-700 text-lg text-shark-blue">
           {currentUser.id === user.id
             ? "My Posts"
             : `What ${user.firstName} is posting lately`}
@@ -67,28 +67,28 @@ export default async function User({ params: { id } }: PageProps) {
           {paginatedUserPosts.data.map((post) => (
             <li
               key={post.id}
-              className="w-full border border-light-grey px-10 my-4 bg-white rounded-lg shadow-md"
+              className="my-4 w-full rounded-lg border border-light-grey bg-white px-10 shadow-md"
             >
               <Link href={`/posts/${post.id}`}>
-                <div className="flex justify-between text-xl my-6">
+                <div className="my-6 flex justify-between text-xl">
                   <div>{post.text === "" ? "-" : post.text}</div>
                 </div>
                 <div>
                   <img
-                    className="h-80 w-full object-cover rounded"
+                    className="h-80 w-full rounded object-cover"
                     src={post.image}
                     alt=""
                   />
                 </div>
               </Link>
-              <div className="flex text-grey my-6">
+              <div className="my-6 flex text-grey">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
                   viewBox="0 0 24 24"
                   strokeWidth="1.5"
                   stroke="currentColor"
-                  className="w-6 h-6 heart-icon"
+                  className="heart-icon h-6 w-6"
                 >
                   <path
                     strokeLinecap="round"

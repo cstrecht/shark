@@ -32,14 +32,14 @@ export function CreateCommentForm({ post_id }: CreateCommentFormProps) {
     <form className="mb-8" onSubmit={handleSubmit}>
       <div className="flex gap-8">
         <textarea
-          className="text-dark-blue border border-light-grey rounded-xl w-full p-2"
+          className="w-full rounded-xl border border-light-grey p-2 text-dark-blue"
           name="message"
           placeholder="Write a comment"
           value={message}
           onChange={(e) => setMessage(e.target.value)}
         />
         <input
-          className="block text-white bg-shark-blue focus:ring-4 focus:outline-none focus:ring-cyan-300 rounded-xl text-base font-bold px-8 py-2 text-center"
+          className="focus:ring-cyan-300 block rounded-xl bg-shark-blue px-8 py-2 text-center text-base font-bold text-white focus:outline-none focus:ring-4"
           type="submit"
         />
       </div>
@@ -71,15 +71,15 @@ export function CreatePostForm() {
   return (
     <form
       onSubmit={handleSubmit}
-      className="flex flex-col text-black gap-8 my-4"
+      className="text-black my-4 flex flex-col gap-8"
     >
       <textarea
-        className="bg-grey2 rounded-md p-4 text-black"
+        className="text-black rounded-md bg-grey2 p-4"
         name="text"
         placeholder="Go ahead..."
       />
       <input
-        className="bg-grey2 rounded-md p-4 text-black"
+        className="text-black rounded-md bg-grey2 p-4"
         type="url"
         pattern="https://.*"
         name="image"
@@ -87,7 +87,7 @@ export function CreatePostForm() {
       />
 
       <input
-        className="bg-gradient-to-r text-white from-shark-blue to-cyan hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-cyan-300 rounded-full text-lg font-bold p-3 hover:cursor-pointer"
+        className="focus:ring-cyan-300 rounded-full bg-gradient-to-r from-shark-blue to-cyan p-3 text-lg font-bold text-white hover:cursor-pointer hover:bg-gradient-to-bl focus:outline-none focus:ring-4"
         type="submit"
         value="Post"
       />
@@ -134,23 +134,23 @@ export function EditPostForm({ post }: EditPostFormProps) {
   return (
     <form
       onSubmit={handleSubmit}
-      className="flex flex-col text-black gap-8 my-4"
+      className="text-black my-4 flex flex-col gap-8"
     >
       <textarea
-        className="bg-grey2 rounded-md p-4 text-black"
+        className="text-black rounded-md bg-grey2 p-4"
         onChange={handleTextChange}
         name="text"
         value={text}
       />
       <input
         onChange={handleImageChange}
-        className="bg-grey2 rounded-md p-4 text-black"
+        className="text-black rounded-md bg-grey2 p-4"
         name="image"
         type="text"
         value={image}
       />
       <input
-        className="bg-light-grey rounded-full hover:bg-mostard text-white p-3 font-bold hover:cursor-pointer"
+        className="rounded-full bg-light-grey p-3 font-bold text-white hover:cursor-pointer hover:bg-mostard"
         type="submit"
         value="Edit"
       />
@@ -185,12 +185,12 @@ export function LoginForm() {
         type="text"
         name="userId"
         id="userId"
-        className="bg-gray-50 border text-shark-blue border-grey2 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
+        className="bg-gray-50 focus:ring-primary-600 focus:border-primary-600 block w-full rounded-lg border border-grey2 p-2.5 text-shark-blue sm:text-sm"
         placeholder="User ID *"
       />
       <button
         type="submit"
-        className="w-full text-white bg-shark-blue focus:ring-4 focus:outline-none font-medium rounded-lg text-sm px-5 py-2.5 text-center hover:font-extrabold"
+        className="w-full rounded-lg bg-shark-blue px-5 py-2.5 text-center text-sm font-medium text-white hover:font-extrabold focus:outline-none focus:ring-4"
       >
         Sign in
       </button>
@@ -235,7 +235,7 @@ export function SignupForm() {
         type="text"
         name="firstName"
         id="firstName"
-        className="border text-shark-blue border-grey2 text-md rounded-lg focus:ring-cyan focus:border-cyan block w-full p-2.5"
+        className="text-md block w-full rounded-lg border border-grey2 p-2.5 text-shark-blue focus:border-cyan focus:ring-cyan"
         placeholder="First name *"
         required
       />
@@ -243,7 +243,7 @@ export function SignupForm() {
         type="text"
         name="lastName"
         id="lastName"
-        className="border text-shark-blue border-grey2 text-md rounded-lg focus:ring-cyan focus:border-cyan block w-full p-2.5"
+        className="text-md block w-full rounded-lg border border-grey2 p-2.5 text-shark-blue focus:border-cyan focus:ring-cyan"
         placeholder="Last name *"
         required
       />
@@ -251,7 +251,7 @@ export function SignupForm() {
         type="email"
         name="email"
         id="email"
-        className="border text-shark-blue border-grey2 text-md rounded-lg focus:ring-cyan focus:border-cyan block w-full p-2.5"
+        className="text-md block w-full rounded-lg border border-grey2 p-2.5 text-shark-blue focus:border-cyan focus:ring-cyan"
         placeholder="Email address *"
         required
       />
@@ -259,7 +259,7 @@ export function SignupForm() {
         type="text"
         name="phone"
         id="phone"
-        className="border text-shark-blue border-grey2 text-md rounded-lg focus:ring-cyan focus:border-cyan block w-full p-2.5"
+        className="text-md block w-full rounded-lg border border-grey2 p-2.5 text-shark-blue focus:border-cyan focus:ring-cyan"
         placeholder="Phone number"
         required
       />
@@ -267,7 +267,7 @@ export function SignupForm() {
         type="text"
         name="city"
         id="city"
-        className="border text-shark-blue border-grey2 text-md rounded-lg focus:ring-cyan focus:border-cyan block w-full p-2.5"
+        className="text-md block w-full rounded-lg border border-grey2 p-2.5 text-shark-blue focus:border-cyan focus:ring-cyan"
         placeholder="City *"
         required
       />
@@ -275,7 +275,7 @@ export function SignupForm() {
         type="text"
         name="country"
         id="country"
-        className="border text-shark-blue border-grey2 text-md rounded-lg focus:ring-cyan focus:border-cyan block w-full p-2.5"
+        className="text-md block w-full rounded-lg border border-grey2 p-2.5 text-shark-blue focus:border-cyan focus:ring-cyan"
         placeholder="Country *"
         required
       />
@@ -283,7 +283,7 @@ export function SignupForm() {
         defaultValue=""
         name="gender"
         id="gender"
-        className="border text-light-grey bg-white border-grey2 text-md rounded-lg focus:ring-shark-blue focus:border-shark-blue block w-full p-2.5"
+        className="text-md block w-full rounded-lg border border-grey2 bg-white p-2.5 text-light-grey focus:border-shark-blue focus:ring-shark-blue"
       >
         <option value="">I prefer not to share my gender</option>
         <option value="female">Female</option>
@@ -292,7 +292,7 @@ export function SignupForm() {
       </select>
       <button
         type="submit"
-        className="w-full text-white bg-cyan focus:ring-4 focus:outline-none font-medium rounded-lg text-sm px-5 py-2.5 text-center hover:font-extrabold"
+        className="w-full rounded-lg bg-cyan px-5 py-2.5 text-center text-sm font-medium text-white hover:font-extrabold focus:outline-none focus:ring-4"
       >
         Sign Up
       </button>

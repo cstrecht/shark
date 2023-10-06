@@ -23,11 +23,11 @@ export default async function Home() {
         {paginatedPosts.data.map((post) => (
           <li
             key={post.id}
-            className="w-full px-10 my-4 pb-6 pt-3 bg-white rounded-lg shadow-md"
+            className="my-4 w-full rounded-lg bg-white px-10 pb-6 pt-3 shadow-md"
           >
             <div className="flex justify-between">
               <div>
-                <div className="text-red-700 flex items-center text-sm text-grey mb-2">
+                <div className="text-red-700 mb-2 flex items-center text-sm text-grey">
                   {post.owner.picture === undefined ? (
                     <Image
                       src={shark_default}
@@ -38,7 +38,7 @@ export default async function Home() {
                     />
                   ) : (
                     <img
-                      className="rounded-full w-10 h-10"
+                      className="h-10 w-10 rounded-full"
                       src={post.owner.picture}
                       alt="Profile picture"
                     />
@@ -63,7 +63,7 @@ export default async function Home() {
                     )}
                   </div>
                 </div>
-                <Link href={`/posts/${post.id}`} className="text-2xl my-2">
+                <Link href={`/posts/${post.id}`} className="my-2 text-2xl">
                   {post.text === "" ? "-" : post.text}
                 </Link>
               </div>
@@ -79,10 +79,10 @@ export default async function Home() {
             </div>
             <Link
               href={`/posts/${post.id}`}
-              className="flex justify-center mt-3 rounded-lg"
+              className="mt-3 flex justify-center rounded-lg"
             >
               <img
-                className="h-52 w-11/12 object-none rounded-2xl"
+                className="h-52 w-11/12 rounded-2xl object-none"
                 src={post.image}
                 alt="Post image"
               />

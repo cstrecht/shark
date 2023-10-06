@@ -13,7 +13,7 @@ export default async function EditPost({ params: { id } }: PageProps) {
 
   return (
     <section className="flex justify-center">
-      <div className="border bg-white w-1/2 p-8 border-light-grey rounded-xl shadow">
+      <div className="w-1/2 rounded-xl border border-light-grey bg-white p-8 shadow">
         <h1 className="text-2xl font-semibold text-light-grey">Edit post 🔧</h1>
         <EditPostForm post={post} />
       </div>
