@@ -1,10 +1,12 @@
+import { GoBackButton } from "@/components/Buttons";
 import { CreatePostForm } from "@/components/Forms";
 
 export default async function NewPost() {
   return (
     <section className="flex justify-center">
-      <div className="w-1/2 rounded-xl border border-shark-blue bg-white p-8 shadow">
-        <h1 className="text-2xl font-semibold text-shark-blue">
+      <div className="card-post border-shark-blue">
+        <GoBackButton url="/" />
+        <h1 className="card-post-title text-shark-blue">
           What is happening? 💭
         </h1>
         <CreatePostForm />

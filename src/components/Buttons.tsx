@@ -30,7 +30,7 @@ export function DeleteButton({ apiUrl }: DeleteButtonProps) {
         viewBox="0 0 24 24"
         strokeWidth="1.5"
         stroke="currentColor"
-        className="trash-icon h-5 w-5"
+        className="trash-svg h-5 w-5"
       >
         <path
           strokeLinecap="round"
@@ -52,7 +52,7 @@ export function EditButton({ href }: EditButtonProps) {
           viewBox="0 0 24 24"
           strokeWidth="1.5"
           stroke="currentColor"
-          className="update-icon h-5 w-5"
+          className="update-svg h-5 w-5"
         >
           <path
             strokeLinecap="round"
@@ -67,14 +67,14 @@ export function EditButton({ href }: EditButtonProps) {
 
 export function LikeButton({ likes }: LikeButtonProps) {
   return (
-    <button className="flex items-center gap-2 text-grey">
+    <button className="btn-like">
       <svg
         xmlns="http://www.w3.org/2000/svg"
         fill="none"
         viewBox="0 0 24 24"
         strokeWidth="1.5"
         stroke="currentColor"
-        className="heart-icon h-6 w-6"
+        className="heart-svg h-6 w-6"
       >
         <path
           strokeLinecap="round"
@@ -89,13 +89,8 @@ export function LikeButton({ likes }: LikeButtonProps) {
 
 export function PostButton() {
   return (
-    <button className="fixed bottom-0 right-0 mb-20 mr-12">
-      <Link
-        href="/posts/new"
-        className="focus:ring-cyan-300 mb-2 block rounded-full bg-gradient-to-r from-shark-blue to-cyan px-8 py-5 text-center text-lg font-bold text-white hover:bg-gradient-to-bl focus:outline-none focus:ring-4"
-      >
-        Create Post
-      </Link>
+    <button className="btn-post">
+      <Link href="/posts/new">Create</Link>
     </button>
   );
 }
@@ -110,10 +105,7 @@ export function LogOutButton() {
   };
 
   return (
-    <button
-      className="rounded-xl px-6 py-2 text-xs text-shark-blue ring ring-shark-blue hover:bg-shark-blue hover:text-white"
-      onClick={handleClick}
-    >
+    <button className="btn-logout" onClick={handleClick}>
       Log Out
     </button>
   );
@@ -121,7 +113,7 @@ export function LogOutButton() {
 
 export function GoBackButton({ url }: GoBackButtonProps) {
   return (
-    <button>
+    <button className="w-fit">
       <Link href={url}>
         <svg
           xmlns="http://www.w3.org/2000/svg"

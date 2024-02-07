@@ -30,18 +30,15 @@ export function CreateCommentForm({ post_id }: CreateCommentFormProps) {
 
   return (
     <form className="mb-8" onSubmit={handleSubmit}>
-      <div className="flex gap-8">
+      <div className="flex gap-2 md:gap-8">
         <textarea
-          className="w-full rounded-xl border border-light-grey p-2 text-dark-blue"
+          className="comment-area"
           name="message"
           placeholder="Write a comment"
           value={message}
           onChange={(e) => setMessage(e.target.value)}
         />
-        <input
-          className="focus:ring-cyan-300 block rounded-xl bg-shark-blue px-8 py-2 text-center text-base font-bold text-white focus:outline-none focus:ring-4"
-          type="submit"
-        />
+        <input className="comment-submit" type="submit" value="Comment" />
       </div>
     </form>
   );
@@ -69,28 +66,17 @@ export function CreatePostForm() {
   };
 
   return (
-    <form
-      onSubmit={handleSubmit}
-      className="text-black my-4 flex flex-col gap-8"
-    >
-      <textarea
-        className="text-black rounded-md bg-grey2 p-4"
-        name="text"
-        placeholder="Go ahead..."
-      />
+    <form onSubmit={handleSubmit} className="post-form">
+      <textarea className="post-input" name="text" placeholder="Go ahead..." />
       <input
-        className="text-black rounded-md bg-grey2 p-4"
+        className="post-input"
         type="url"
         pattern="https://.*"
         name="image"
         placeholder="https://example.com/example.png"
       />
 
-      <input
-        className="focus:ring-cyan-300 rounded-full bg-gradient-to-r from-shark-blue to-cyan p-3 text-lg font-bold text-white hover:cursor-pointer hover:bg-gradient-to-bl focus:outline-none focus:ring-4"
-        type="submit"
-        value="Post"
-      />
+      <input className="btn-create" type="submit" value="Post" />
     </form>
   );
 }
@@ -132,28 +118,21 @@ export function EditPostForm({ post }: EditPostFormProps) {
   };
 
   return (
-    <form
-      onSubmit={handleSubmit}
-      className="text-black my-4 flex flex-col gap-8"
-    >
+    <form onSubmit={handleSubmit} className="post-form">
       <textarea
-        className="text-black rounded-md bg-grey2 p-4"
+        className="post-input"
         onChange={handleTextChange}
         name="text"
         value={text}
       />
       <input
         onChange={handleImageChange}
-        className="text-black rounded-md bg-grey2 p-4"
+        className="post-input"
         name="image"
         type="text"
         value={image}
       />
-      <input
-        className="rounded-full bg-light-grey p-3 font-bold text-white hover:cursor-pointer hover:bg-mostard"
-        type="submit"
-        value="Edit"
-      />
+      <input className="btn-edit" type="submit" value="Edit" />
     </form>
   );
 }
@@ -178,20 +157,17 @@ export function LoginForm() {
   };
 
   return (
-    <form className="space-y-4 md:space-y-6" onSubmit={handleSubmit}>
+    <form className="space-y-6 sm:space-y-8" onSubmit={handleSubmit}>
       <input
         required
         pattern="^(?!\s*$).+"
         type="text"
         name="userId"
         id="userId"
-        className="bg-gray-50 focus:ring-primary-600 focus:border-primary-600 block w-full rounded-lg border border-grey2 p-2.5 text-shark-blue sm:text-sm"
+        className="no-auth-input"
         placeholder="User ID *"
       />
-      <button
-        type="submit"
-        className="w-full rounded-lg bg-shark-blue px-5 py-2.5 text-center text-sm font-medium text-white hover:font-extrabold focus:outline-none focus:ring-4"
-      >
+      <button type="submit" className="btn-login">
         Sign in
       </button>
     </form>
@@ -230,12 +206,12 @@ export function SignupForm() {
   };
 
   return (
-    <form className="space-y-4 md:space-y-6" onSubmit={handleSubmit}>
+    <form className="space-y-6 sm:space-y-8" onSubmit={handleSubmit}>
       <input
         type="text"
         name="firstName"
         id="firstName"
-        className="text-md block w-full rounded-lg border border-grey2 p-2.5 text-shark-blue focus:border-cyan focus:ring-cyan"
+        className="no-auth-input"
         placeholder="First name *"
         required
       />
@@ -243,7 +219,7 @@ export function SignupForm() {
         type="text"
         name="lastName"
         id="lastName"
-        className="text-md block w-full rounded-lg border border-grey2 p-2.5 text-shark-blue focus:border-cyan focus:ring-cyan"
+        className="no-auth-input"
         placeholder="Last name *"
         required
       />
@@ -251,7 +227,7 @@ export function SignupForm() {
         type="email"
         name="email"
         id="email"
-        className="text-md block w-full rounded-lg border border-grey2 p-2.5 text-shark-blue focus:border-cyan focus:ring-cyan"
+        className="no-auth-input"
         placeholder="Email address *"
         required
       />
@@ -259,7 +235,7 @@ export function SignupForm() {
         type="text"
         name="phone"
         id="phone"
-        className="text-md block w-full rounded-lg border border-grey2 p-2.5 text-shark-blue focus:border-cyan focus:ring-cyan"
+        className="no-auth-input"
         placeholder="Phone number"
         required
       />
@@ -267,7 +243,7 @@ export function SignupForm() {
         type="text"
         name="city"
         id="city"
-        className="text-md block w-full rounded-lg border border-grey2 p-2.5 text-shark-blue focus:border-cyan focus:ring-cyan"
+        className="no-auth-input"
         placeholder="City *"
         required
       />
@@ -275,7 +251,7 @@ export function SignupForm() {
         type="text"
         name="country"
         id="country"
-        className="text-md block w-full rounded-lg border border-grey2 p-2.5 text-shark-blue focus:border-cyan focus:ring-cyan"
+        className="no-auth-input"
         placeholder="Country *"
         required
       />
@@ -283,19 +259,18 @@ export function SignupForm() {
         defaultValue=""
         name="gender"
         id="gender"
-        className="text-md block w-full rounded-lg border border-grey2 bg-white p-2.5 text-light-grey focus:border-shark-blue focus:ring-shark-blue"
+        className="no-auth-select"
       >
         <option value="">I prefer not to share my gender</option>
         <option value="female">Female</option>
         <option value="male">Male</option>
         <option value="other">Other</option>
       </select>
-      <button
-        type="submit"
-        className="w-full rounded-lg bg-cyan px-5 py-2.5 text-center text-sm font-medium text-white hover:font-extrabold focus:outline-none focus:ring-4"
-      >
+      <button type="submit" className="btn-signup">
         Sign Up
       </button>
     </form>
   );
 }
+
+// 6516f06997edc09b3fe4bb38

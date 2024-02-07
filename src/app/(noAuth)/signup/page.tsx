@@ -9,15 +9,15 @@ export default async function Signup() {
   if (session) redirect("/");
 
   return (
-    <section className="bg-gray-50 flex min-h-screen items-center justify-center">
-      <div className="w-full max-w-md space-y-4 rounded-lg bg-white p-8 shadow-md md:space-y-6">
+    <section className="no-auth-section">
+      <div className="card-no-auth">
         <GoBackButton url={`/login`} />
-        <h1 className="text-black text-center text-xl font-bold leading-tight tracking-tight md:text-2xl">
+        <h1 className="text-xl font-semibold sm:text-2xl">
           Create your Shark Pool account! 🦈
         </h1>
-        <p className="text-center text-sm font-light text-light-grey">
-          Please provide your details to access in this pool full of sharks!
-          Your unique ID number for log in will be sent to your email inbox!
+        <p className="text-center text-xs font-light text-light-grey sm:text-sm">
+          Please provide your details to access this pool full of sharks! Your
+          unique ID number for log in will be sent to your email inbox.
         </p>
         <SignupForm />
       </div>

@@ -2,16 +2,148 @@
 @tailwind components;
 @tailwind utilities;
 
-.heart-icon:hover {
-  fill: rgb(235, 79, 92);
-  stroke: rgb(235, 79, 92);
-  cursor: pointer;
+@layer base {
+  body {
+    @apply relative mx-6 min-h-screen bg-grey2 sm:mx-24 lg:mx-36 xl:mx-64;
+  }
 }
-.trash-icon:hover {
-  stroke: rgb(235, 79, 92);
-  cursor: pointer;
-}
-.update-icon:hover {
-  stroke: rgb(242, 177, 52);
-  cursor: pointer;
+
+@layer components {
+  /* Images */
+  .trash-svg {
+    @apply hover:cursor-pointer hover:stroke-[#eb4f5c];
+  }
+  .heart-svg {
+    @apply hover:cursor-pointer hover:fill-[#eb4f5c] hover:stroke-[#eb4f5c];
+  }
+  .update-svg {
+    @apply hover:cursor-pointer hover:stroke-[#f2b134];
+  }
+  .profile-pic {
+    @apply h-12 w-12 rounded-full;
+  }
+
+  /* Buttons */
+  .btn-login {
+    @apply w-full rounded-lg bg-shark-blue px-5 py-2.5 text-center text-xs font-medium text-white hover:font-extrabold focus:outline-none focus:ring sm:text-sm;
+  }
+  .btn-logout {
+    @apply rounded-xl px-6 py-2 text-xs text-shark-blue ring ring-shark-blue hover:bg-shark-blue hover:text-white;
+  }
+  .btn-signup {
+    @apply w-full rounded-lg bg-cyan px-5 py-2.5 text-center text-sm font-medium text-white hover:font-extrabold focus:outline-none focus:ring;
+  }
+  .btn-post {
+    @apply fixed bottom-0 right-0 mb-6 mr-6 block rounded-full bg-gradient-to-r from-shark-blue to-cyan px-6 py-2 text-center text-sm font-semibold text-white hover:bg-gradient-to-bl focus:outline-none focus:ring-4 sm:p-4 sm:text-base md:text-lg lg:mb-12 lg:mr-12 lg:px-8 lg:py-4;
+  }
+  .btn-like {
+    @apply flex items-center gap-2 text-grey;
+  }
+  .btn-create {
+    @apply rounded-full bg-gradient-to-r from-shark-blue to-cyan p-3 text-base font-bold text-white hover:cursor-pointer hover:bg-gradient-to-bl focus:outline-none focus:ring-4 sm:text-lg;
+  }
+  .btn-edit {
+    @apply rounded-full bg-light-grey p-3 font-bold text-white hover:cursor-pointer hover:bg-mostard;
+  }
+
+  /* Navbar */
+  .navbar-section {
+    @apply mx-auto flex items-center justify-between py-6;
+  }
+  .navbar-logo {
+    @apply text-xl font-bold leading-5 text-dark-blue md:text-3xl;
+  }
+  .navbar-slogan {
+    @apply text-sm font-light sm:text-base lg:text-lg;
+  }
+  .navbar-user {
+    @apply flex flex-row items-center rounded-lg bg-white p-1 text-base;
+  }
+  .navbar-user-name {
+    @apply hidden p-2 text-light-grey md:flex;
+  }
+
+  /* Cards */
+  .card-post {
+    @apply rounded-xl border  bg-white p-4 shadow sm:w-2/3 sm:p-8;
+  }
+  .card-post-title {
+    @apply text-xl font-semibold  md:text-2xl;
+  }
+  .card-no-auth {
+    @apply flex w-full max-w-md flex-col justify-center gap-2 rounded-2xl bg-white p-6 text-center shadow-md sm:gap-8;
+  }
+  .profile-card {
+    @apply flex h-fit w-full flex-col items-center justify-center gap-4 rounded-xl bg-white p-4 lg:w-1/2 lg:p-6 lg:shadow;
+  }
+
+  /* Forms */
+
+  .post-form {
+    @apply my-4 flex flex-col gap-8;
+  }
+  .post-input {
+    @apply rounded-md bg-grey2 p-4;
+  }
+  .no-auth-input {
+    @apply block w-full rounded-lg border border-grey2 p-2 text-xs text-shark-blue sm:text-sm;
+  }
+  .no-auth-select {
+    @apply block w-full rounded-lg border border-grey2 bg-white p-2 text-xs text-light-grey sm:text-sm;
+  }
+
+  /* Pages */
+  .no-auth-section {
+    @apply mt-12 flex min-h-screen items-start justify-center sm:mt-0 sm:items-center;
+  }
+  .post-page {
+    @apply my-6 flex justify-between text-base md:text-xl;
+  }
+  .post-name {
+    @apply pl-2 pt-4 text-shark-blue;
+  }
+  .post-text {
+    @apply mt-4 text-base md:text-2xl;
+  }
+  .post-image-container {
+    @apply flex justify-center rounded-lg md:bg-white;
+  }
+  .post-image {
+    @apply rounded-lg object-cover md:h-1/2 md:w-1/2;
+  }
+  .profile-section {
+    @apply flex flex-col items-center justify-center gap-4 lg:flex-row lg:items-start lg:justify-around lg:gap-16;
+  }
+  .profile-name {
+    @apply text-center text-2xl font-medium text-shark-blue lg:text-3xl;
+  }
+  .profile-info {
+    @apply flex flex-col gap-2 text-left text-base font-light text-grey;
+  }
+  .profile-posts {
+    @apply min-h-[750px] w-full p-4 lg:overflow-auto  lg:rounded-xl lg:bg-white lg:shadow;
+  }
+  .profile-post {
+    @apply my-4 w-full rounded-lg border border-white bg-white px-10 shadow-md hover:shadow-xl;
+  }
+
+  /* Comments */
+  .comment-area {
+    @apply w-full rounded-xl border border-white p-2 text-sm text-dark-blue sm:text-base;
+  }
+  .comment-submit {
+    @apply block rounded-xl bg-shark-blue p-3 text-center text-xs text-white hover:cursor-pointer focus:outline-none focus:ring-4 sm:text-sm md:px-8 md:py-2 md:text-base;
+  }
+  .user-picture {
+    @apply h-8 w-8 rounded-full sm:h-10 sm:w-10;
+  }
+  .comment-container {
+    @apply flex justify-between gap-24 break-words rounded-xl bg-white px-4 py-2;
+  }
+  .comment-username {
+    @apply text-sm font-bold sm:text-base;
+  }
+  .comment {
+    @apply text-sm font-light sm:text-base;
+  }
 }

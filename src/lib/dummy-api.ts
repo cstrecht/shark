@@ -21,7 +21,7 @@ export async function getPostById(id: string): Promise<Post> {
 }
 
 export async function getPostsFromUser(
-  id: string
+  id: string,
 ): Promise<PaginatedData<PostPreview>> {
   return await getData(`/user/${id}/post`);
 }
@@ -35,7 +35,7 @@ export async function getUserById(id: string): Promise<User> {
 }
 
 export async function getCommentsFromPost(
-  id: string
+  id: string,
 ): Promise<PaginatedData<PostComment>> {
   return await getData(`/post/${id}/comment`);
 }
@@ -90,7 +90,6 @@ async function postData(path: string, data: Object) {
   const response = await fetch(`${DUMMY_API_URL}${path}`, fetchOptions);
 
   if (!response.ok) {
-    console.log(await response.json());
     throw new Error("Failed to post data");
   }
 

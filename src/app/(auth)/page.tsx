@@ -14,8 +14,6 @@ export default async function Home() {
   const currentUser = await useUser();
   const paginatedPosts = await getPosts();
 
-  console.log(currentUser.picture);
-
   return (
     <section>
       <PostButton />
@@ -27,18 +25,18 @@ export default async function Home() {
           >
             <div className="flex justify-between">
               <div>
-                <div className="text-red-700 mb-2 flex items-center text-sm text-grey">
+                <div className="mb-2 flex items-center text-xs text-grey sm:text-sm">
                   {post.owner.picture === undefined ? (
                     <Image
                       src={shark_default}
                       alt="logo"
                       width={40}
                       height={40}
-                      className="rounded-full"
+                      className="user-picture"
                     />
                   ) : (
                     <img
-                      className="h-10 w-10 rounded-full"
+                      className="user-picture"
                       src={post.owner.picture}
                       alt="Profile picture"
                     />
@@ -63,13 +61,16 @@ export default async function Home() {
                     )}
                   </div>
                 </div>
-                <Link href={`/posts/${post.id}`} className="my-2 text-2xl">
+                <Link
+                  href={`/posts/${post.id}`}
+                  className="my-2 text-base sm:text-2xl"
+                >
                   {post.text === "" ? "-" : post.text}
                 </Link>
               </div>
-              <div className="flex flex-row gap-7">
+              <div className="flex flex-row gap-1 sm:gap-7">
                 {currentUser.id === post.owner.id && (
-                  <div className="flex flex-row gap-8">
+                  <div className="flex flex-row gap-2 sm:gap-8">
                     <DeleteButton apiUrl={`/api/posts/${post.id}`} />
                     <EditButton href={`/posts/${post.id}/edit`} />
                   </div>
@@ -82,7 +83,7 @@ export default async function Home() {
               className="mt-3 flex justify-center rounded-lg"
             >
               <img
-                className="h-52 w-11/12 rounded-2xl object-none"
+                className="h-52 w-full rounded object-cover sm:w-11/12 sm:rounded-xl"
                 src={post.image}
                 alt="Post image"
               />

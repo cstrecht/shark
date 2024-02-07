@@ -17,9 +17,7 @@ export default async function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body
-        className={`${nunito.className} relative min-h-screen  bg-grey2 xl:mx-64`}
-      >
+      <body className={`${nunito.className}`}>
         <Navbar />
         {children}
       </body>
